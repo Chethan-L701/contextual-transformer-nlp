@@ -2,6 +2,7 @@
 with import <nixpkgs> {};
 stdenv.mkDerivation {
     name = "transformers based nlp";
+    allowUnfree = true;
     buildInputs = [ 
         pkg-config 
         gcc 
@@ -12,8 +13,10 @@ stdenv.mkDerivation {
         python312Packages.tensorflow
         python312Packages.streamlit 
         python312Packages.transformers
+        cudaPackages.cudatoolkit
     ];
     shellHook = ''
+        export NIXPKGS_ALLOW_UNFREE=1
         fish
     '';
 }
