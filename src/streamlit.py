@@ -1,5 +1,5 @@
 import streamlit as st
-from model.model import Model
+from model.model import question_answer
 import json
 
 # Streamlit app title
@@ -19,9 +19,7 @@ if st.button("Submit"):
     # Display the inputs
     if context and question:
 
-        model = Model()
-
-        result = model.get_results(context, question);
+        result = question_answer(context, question);
 
         prompt = {"context": context, "question": question}
         json_string = json.dumps(prompt)
@@ -33,5 +31,4 @@ if st.button("Submit"):
         st.info(result)
     else:
         st.warning("Please fill in both the context and the question!")
-
 
