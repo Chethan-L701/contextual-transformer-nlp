@@ -82,7 +82,7 @@ class QuestionAnsweringModel:
     
     def compile_model(self):
         self.model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
-    
+
     def train_model(self, train_dataset, epochs=3):
         self.model.fit(train_dataset, epochs=epochs)
     

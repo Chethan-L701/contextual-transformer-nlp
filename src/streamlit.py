@@ -2,7 +2,7 @@ from model.model import question_answer
 import streamlit as st
 import json
 
-# Streamlit app title
+# Title
 st.title("Contextual Language Understanding with Transformer Models: Elevating NLP Capabilities")
 
 # Input for context
