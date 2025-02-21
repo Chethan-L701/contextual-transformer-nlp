@@ -60,7 +60,7 @@ class TransformerBlock(tf.keras.layers.Layer):
         ffn_output = self.dropout2(ffn_output)
         return self.norm2(out1 + ffn_output)
 
-class QuestionAnsweringModelWrapper:
+class QuestionAnsweringModel:
     def __init__(self, vocab_size=30522, embed_dim=128, num_heads=8, ff_dim=512, num_blocks=4, max_len=512):
         self.vocab_size = vocab_size
         self.embed_dim = embed_dim
@@ -89,9 +89,19 @@ class QuestionAnsweringModelWrapper:
     def save_model(self, filename="qa_model.keras"):
         self.model.save(filename)
 
+def load_training_data(data_folder="training-data"):
+    dataset = []
+    for file in os.listdir(data_folder):
+        if file.endswith(".json"):
+            with open(os.path.join(data_folder, file), "r", encoding="utf-8") as f:
+                data = json.load(f)
+                dataset.extend(data)
+    return dataset
+
 # Instantiate and train the model
-qa_wrapper = QuestionAnsweringModelWrapper()
+qa_wrapper = QuestionAnsweringModel()
 qa_wrapper.compile_model()
+# train_dataset = load_training_data()
 # qa_wrapper.train_model(train_dataset)
 qa_wrapper.save_model("qa_model.keras")
 
