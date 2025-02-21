@@ -6,3 +6,4 @@ bin
 include
 session.vim
 training-data
+./model/qa_model.keras

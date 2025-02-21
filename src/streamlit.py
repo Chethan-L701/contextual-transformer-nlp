@@ -1,5 +1,5 @@
-import streamlit as st
 from model.model import question_answer
+import streamlit as st
 import json
 
 # Streamlit app title
